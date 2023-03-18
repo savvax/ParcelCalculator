@@ -68,7 +68,7 @@ func (c *Client) Calculate(fromLocation, toLocation Location, size Size) (string
 		panic(err)
 	}
 
-	// выводим весь JSON
+	// Output all JSON
 	jsonDataBytes, err := json.MarshalIndent(jsonData, "", "    ")
 	if err != nil {
 		panic(err)
