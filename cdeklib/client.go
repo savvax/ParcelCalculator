@@ -3,9 +3,9 @@ package cdeklib
 type Client struct {
 	Token      string
 	IsTestMode bool
-	ApiUrl     string
+	ApiURL     string
 }
 
-func NewClient(token string, isTestMode bool, apiUrl string) *Client {
-	return &Client{Token: token, IsTestMode: isTestMode, ApiUrl: apiUrl}
+func NewClient(token string, isTestMode bool, apiURL string) *Client {
+	return &Client{Token: token, IsTestMode: isTestMode, ApiURL: apiURL}
 }

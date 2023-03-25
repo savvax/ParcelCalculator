@@ -35,7 +35,7 @@ func (c *Client) Calculate(fromLocation, toLocation Location, size Size) (string
 	`, CdekType, CdekDate, CdekCurrency, CdekLang, fromLocation.Code, fromLocation.PostalCode, fromLocation.CountryCode, fromLocation.City, fromLocation.Address, toLocation.Code, toLocation.PostalCode, toLocation.CountryCode, toLocation.City, toLocation.Address, size.Weight, size.Length, size.Width, size.Height)
 
 	// Create a new HTTP request with the built request body.
-	request, err := http.NewRequest("POST", c.ApiUrl, strings.NewReader(requestBody))
+	request, err := http.NewRequest("POST", c.ApiURL, strings.NewReader(requestBody))
 	if err != nil {
 		return "", err
 	}

@@ -10,7 +10,7 @@ func main() {
 	account := "EMscd6r9JnFiQ3bLoyjJY6eM78JrJceI"
 	securePassword := "PjLZkKBHEiLK3YsjtNrt3TGNG0ahs3kG"
 	// Set up API URLs
-	apiUrl := "https://api.edu.cdek.ru/v2/oauth/token?parameters"
+	apiURL := "https://api.edu.cdek.ru/v2/oauth/token?parameters"
 	apiUrlTariffList := "https://api.edu.cdek.ru/v2/calculator/tarifflist"
 	// Set up sending and delivery locations
 	sendingAddress := "Россия, г. Москва, Cлавянский бульвар д.1"
@@ -34,7 +34,7 @@ func main() {
 		Height: 20,
 	}
 
-	var accessToken, err = cdeklib.GetAccessToken(apiUrl, account, securePassword)
+	var accessToken, err = cdeklib.GetAccessToken(apiURL, account, securePassword)
 	if err != nil {
 		fmt.Println("Error getting access token:", err)
 		return
