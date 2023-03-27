@@ -34,13 +34,7 @@ func main() {
 		Height: 20,
 	}
 
-	var accessToken, err = cdeklib.GetAccessToken(apiURL, account, securePassword)
-	if err != nil {
-		fmt.Println("Error getting access token:", err)
-		return
-	}
-
-	var client = cdeklib.NewClient(accessToken, true, apiUrlTariffList)
+	var client = cdeklib.NewClient(true, apiURL, apiUrlTariffList, account, securePassword)
 
 	tariffs, err := client.Calculate(fromLocation, toLocation, size)
 	if err != nil {

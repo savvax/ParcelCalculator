@@ -26,7 +26,7 @@ func (c *Client) Calculate(fromLocation, toLocation Location, size Size) (string
 	}
 
 	// Create a new HTTP request with the built request body.
-	request, err := http.NewRequest("POST", c.ApiURL, strings.NewReader(string(requestBody)))
+	request, err := http.NewRequest("POST", c.ApiUrlTariffList, strings.NewReader(string(requestBody)))
 	if err != nil {
 		return "", err
 	}
