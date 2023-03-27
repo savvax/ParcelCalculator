@@ -10,32 +10,23 @@ import (
 
 // Calculate returns an array of tariffs based on the given fromLocation, toLocation, and size.
 func (c *Client) Calculate(fromLocation, toLocation Location, size Size) (string, error) {
-	requestBody := fmt.Sprintf(`
-	{	
-		"type": "%d",
-    	"date": "%s",
-    	"currency": "%d",
-    	"lang": "%s",
-		"from_location": {
-			"code": "%s",
-			"postal_code": "%s",
-			"country_code": "%s",
-			"city": "%s",
-			"address": "%s"
-		},
-		"to_location": {
-			"code": "%s",
-			"postal_code": "%s",
-			"country_code": "%s",
-			"city": "%s",
-			"address": "%s"
-		},
-		"packages": [{"weight": %d, "length": %d, "width": %d, "height": %d}]
+	req := Request{
+		Type:         CdekType,
+		Date:         CdekDate,
+		Currency:     CdekCurrency,
+		Lang:         CdekLang,
+		FromLocation: fromLocation,
+		ToLocation:   toLocation,
+		Packages:     []Size{size},
 	}
-	`, CdekType, CdekDate, CdekCurrency, CdekLang, fromLocation.Code, fromLocation.PostalCode, fromLocation.CountryCode, fromLocation.City, fromLocation.Address, toLocation.Code, toLocation.PostalCode, toLocation.CountryCode, toLocation.City, toLocation.Address, size.Weight, size.Length, size.Width, size.Height)
+
+	requestBody, err := json.Marshal(req)
+	if err != nil {
+		return "", err
+	}
 
 	// Create a new HTTP request with the built request body.
-	request, err := http.NewRequest("POST", c.ApiURL, strings.NewReader(requestBody))
+	request, err := http.NewRequest("POST", c.ApiURL, strings.NewReader(string(requestBody)))
 	if err != nil {
 		return "", err
 	}
