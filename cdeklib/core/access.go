@@ -1,4 +1,4 @@
-package cdeklib
+package core
 
 import (
 	"encoding/json"
@@ -55,7 +55,7 @@ func GetAccessToken(apiURL, account, securePassword string) (string, error) {
 	// Parse the JSON response
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-		return "", err
+
 	}
 
 	var apiResponse struct {

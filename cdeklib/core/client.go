@@ -1,4 +1,4 @@
-package cdeklib
+package core
 
 import "fmt"
 
