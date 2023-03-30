@@ -7,13 +7,10 @@ import (
 )
 
 func main() {
-	// Account information
 	account := "EMscd6r9JnFiQ3bLoyjJY6eM78JrJceI"
 	securePassword := "PjLZkKBHEiLK3YsjtNrt3TGNG0ahs3kG"
-	// Set up API URLs
-	apiURL := "https://api.edu.cdek.ru/v2/oauth/token?parameters"
-	apiUrlTariffList := "https://api.edu.cdek.ru/v2/calculator/tarifflist"
-	//apiURLloc := "https://api.edu.cdek.ru/v2/location/cities"
+	apiURL := "https://api.edu.cdek.ru/"
+
 	// Set up sending and delivery locations
 	sendingAddress := "Россия, г. Москва, Cлавянский бульвар д.1"
 	deliveryAddress := "Россия, Воронежская обл., г. Воронеж, ул. Ленина д.43"
@@ -36,7 +33,7 @@ func main() {
 		Height: 20,
 	}
 
-	var client = core.NewClient(true, apiURL, apiUrlTariffList, account, securePassword)
+	var client = core.NewClient(true, apiURL, account, securePassword)
 
 	tariffs, err := client.Calculate(fromLocation, toLocation, size)
 	if err != nil {
@@ -45,4 +42,48 @@ func main() {
 	}
 
 	fmt.Println(tariffs)
+
+	//CreateOrder
+	recipient := types.Recipient{
+		Name: "Name",
+		Phones: []types.Phone{
+			{
+				Number: "+79991112233",
+			},
+		},
+	}
+	packages := []types.Package{
+		{
+			Length: 15,
+			Width:  25,
+			Height: 30,
+			Weight: 1000,
+			Number: "TestNumber",
+			Items: []types.Item{
+				{
+					Name:    "TestItem",
+					WareKey: "TestWareKey",
+					Payment: types.Money{Value: 0},
+					Value:   0,
+					Cost:    1000,
+					Weight:  1000,
+					Amount:  1,
+				},
+			},
+		},
+	}
+
+	orderID, err := client.CreateOrder(sendingAddress, deliveryAddress, recipient, packages, 233)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(orderID)
+
+	//CheckOrder
+	status, err := client.GetStatus(orderID)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(status)
+
 }

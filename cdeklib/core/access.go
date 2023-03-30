@@ -25,6 +25,9 @@ func GetAccessToken(apiURL, account, securePassword string) (string, error) {
 		return "", errors.New("securePassword is required")
 	}
 
+	endpoint := "v2/oauth/token?parameters"
+	u := apiURL + endpoint
+
 	// Create request body
 	data := url.Values{}
 	data.Set("grant_type", "client_credentials")
@@ -32,7 +35,7 @@ func GetAccessToken(apiURL, account, securePassword string) (string, error) {
 	data.Set("client_secret", securePassword)
 
 	// Create HTTP request
-	request, err := http.NewRequest("POST", apiURL, strings.NewReader(data.Encode()))
+	request, err := http.NewRequest("POST", u, strings.NewReader(data.Encode()))
 	if err != nil {
 		return "", err
 	}
@@ -55,7 +58,7 @@ func GetAccessToken(apiURL, account, securePassword string) (string, error) {
 	// Parse the JSON response
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-
+		return "", err
 	}
 
 	var apiResponse struct {

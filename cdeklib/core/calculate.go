@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -26,8 +27,17 @@ func (c *Client) Calculate(fromLocation, toLocation types.LocationCalc, size typ
 		return "", err
 	}
 
+	baseURL, err := url.Parse(c.ApiURL)
+	if err != nil {
+		panic(err)
+	}
+
+	endpoint := "v2/calculator/tarifflist"
+
+	fullURL := baseURL.ResolveReference(&url.URL{Path: endpoint})
+
 	// Create a new HTTP request with the built request body.
-	request, err := http.NewRequest("POST", c.ApiUrlTariffList, strings.NewReader(string(requestBody)))
+	request, err := http.NewRequest("POST", fullURL.String(), strings.NewReader(string(requestBody)))
 	if err != nil {
 		return "", err
 	}

@@ -73,30 +73,30 @@ type Service struct {
 	Parameter string `json:"parameter,omitempty"`
 }
 
-type Package struct {
-	Number string `json:"number"`
-	Weight int    `json:"weight"`
-	Length int    `json:"length,omitempty"`
-	Width  int    `json:"width,omitempty"`
-	Height int    `json:"height,omitempty"`
-	Items  []Item `json:"items,omitempty"`
-}
+//type Package struct {
+//	Number string `json:"number"`
+//	Weight int    `json:"weight"`
+//	Length int    `json:"length,omitempty"`
+//	Width  int    `json:"width,omitempty"`
+//	Height int    `json:"height,omitempty"`
+//	Items  []Item `json:"items,omitempty"`
+//}
 
-type Item struct {
-	Name        string  `json:"name"`
-	WareKey     string  `json:"ware_key"`
-	Payment     Money   `json:"payment"`
-	Cost        float64 `json:"cost"`
-	Weight      int     `json:"weight"`
-	WeightGross int     `json:"weight_gross,omitempty"`
-	Amount      int     `json:"amount"`
-	NameI18n    string  `json:"name_i18n,omitempty"`
-	Brand       string  `json:"brand,omitempty"`
-	CountryCode string  `json:"country_code,omitempty"`
-	Material    string  `json:"material,omitempty"`
-	WifiGsm     bool    `json:"wifi_gsm,omitempty"`
-	Url         string  `json:"url,omitempty"`
-}
+//type Item struct {
+//	Name        string  `json:"name"`
+//	WareKey     string  `json:"ware_key"`
+//	Payment     Money   `json:"payment"`
+//	Cost        float64 `json:"cost"`
+//	Weight      int     `json:"weight"`
+//	WeightGross int     `json:"weight_gross,omitempty"`
+//	Amount      int     `json:"amount"`
+//	NameI18n    string  `json:"name_i18n,omitempty"`
+//	Brand       string  `json:"brand,omitempty"`
+//	CountryCode string  `json:"country_code,omitempty"`
+//	Material    string  `json:"material,omitempty"`
+//	WifiGsm     bool    `json:"wifi_gsm,omitempty"`
+//	Url         string  `json:"url,omitempty"`
+//}
 
 type Error struct {
 	Code    string `json:"code,omitempty"`
