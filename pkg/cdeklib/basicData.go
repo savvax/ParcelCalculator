@@ -1,4 +1,4 @@
-package core
+package cdeklib
 
 var CdekType = 1
 var CdekDate string

@@ -1,4 +1,4 @@
-package core
+package cdeklib
 
 import (
 	"encoding/json"

@@ -1,7 +1,7 @@
-package core
+package cdeklib
 
 import (
-	"ParcelCalculator/cdeklib/core/types"
+	"ParcelCalculator/pkg/cdeklib/types"
 	"encoding/json"
 	"fmt"
 	"io"
