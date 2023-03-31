@@ -1,7 +1,6 @@
 package cdeklib
 
 import (
-	"ParcelCalculator/pkg/cdeklib/types"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,15 +10,15 @@ import (
 )
 
 // Calculate returns an array of tariffs based on the given fromLocation, toLocation, and size.
-func (c *Client) Calculate(fromLocation, toLocation types.LocationCalc, size types.Size) (string, error) {
-	req := types.CalcRequest{
+func (c *Client) Calculate(fromLocation, toLocation LocationCalc, size Size) (string, error) {
+	req := CalcRequest{
 		Type:         CdekType,
 		Date:         CdekDate,
 		Currency:     CdekCurrency,
 		Lang:         CdekLang,
 		FromLocation: fromLocation,
 		ToLocation:   toLocation,
-		Packages:     []types.Size{size},
+		Packages:     []Size{size},
 	}
 
 	requestBody, err := json.Marshal(req)

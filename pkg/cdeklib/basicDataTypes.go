@@ -1,4 +1,4 @@
-package types
+package cdeklib
 
 import "time"
 
