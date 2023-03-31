@@ -1,8 +1,7 @@
 package main
 
 import (
-	"ParcelCalculator/cdeklib/core"
-	"ParcelCalculator/cdeklib/core/types"
+	"ParcelCalculator/pkg/cdeklib"
 	"fmt"
 )
 
@@ -16,24 +15,24 @@ func main() {
 	deliveryAddress := "Россия, Воронежская обл., г. Воронеж, ул. Ленина д.43"
 
 	// Sending address
-	fromLocation := types.LocationCalc{
+	fromLocation := cdeklib.LocationCalc{
 		Address: sendingAddress,
 	}
 
 	// Delivery address
-	toLocation := types.LocationCalc{
+	toLocation := cdeklib.LocationCalc{
 		Address: deliveryAddress,
 	}
 
 	// Parcel size
-	size := types.Size{
+	size := cdeklib.Size{
 		Weight: 1000,
 		Length: 20,
 		Width:  20,
 		Height: 20,
 	}
 
-	var client = core.NewClient(true, apiURL, account, securePassword)
+	var client = cdeklib.NewClient(true, apiURL, account, securePassword)
 
 	tariffs, err := client.Calculate(fromLocation, toLocation, size)
 	if err != nil {
@@ -44,26 +43,26 @@ func main() {
 	fmt.Println(tariffs)
 
 	//CreateOrder
-	recipient := types.Recipient{
+	recipient := cdeklib.Recipient{
 		Name: "Name",
-		Phones: []types.Phone{
+		Phones: []cdeklib.Phone{
 			{
 				Number: "+79991112233",
 			},
 		},
 	}
-	packages := []types.Package{
+	packages := []cdeklib.Package{
 		{
 			Length: 15,
 			Width:  25,
 			Height: 30,
 			Weight: 1000,
 			Number: "TestNumber",
-			Items: []types.Item{
+			Items: []cdeklib.Item{
 				{
 					Name:    "TestItem",
 					WareKey: "TestWareKey",
-					Payment: types.Money{Value: 0},
+					Payment: cdeklib.Money{Value: 0},
 					Value:   0,
 					Cost:    1000,
 					Weight:  1000,

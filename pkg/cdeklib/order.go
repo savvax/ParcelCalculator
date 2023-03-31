@@ -1,7 +1,6 @@
-package core
+package cdeklib
 
 import (
-	"ParcelCalculator/cdeklib/core/types"
 	"bytes"
 	"encoding/json"
 	"io/ioutil"
@@ -9,13 +8,13 @@ import (
 	"net/url"
 )
 
-func (c *Client) CreateOrder(addrFrom string, addrTo string, recipient types.Recipient, packages []types.Package, tariffCode int) (orderID string, err error) {
+func (c *Client) CreateOrder(addrFrom string, addrTo string, recipient Recipient, packages []Package, tariffCode int) (orderID string, err error) {
 
-	addrFromL := types.OrderLocation{
+	addrFromL := OrderLocation{
 		Address: addrFrom,
 	}
 
-	addrToL := types.OrderLocation{
+	addrToL := OrderLocation{
 		Address: addrTo,
 	}
 
@@ -28,7 +27,7 @@ func (c *Client) CreateOrder(addrFrom string, addrTo string, recipient types.Rec
 
 	fullURL := baseURL.ResolveReference(&url.URL{Path: endpoint})
 
-	rqst := types.OrderRequest{
+	rqst := OrderRequest{
 		TariffCode:   tariffCode,
 		FromLocation: addrFromL,
 		ToLocation:   addrToL,

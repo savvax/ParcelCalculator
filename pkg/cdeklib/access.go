@@ -1,4 +1,4 @@
-package core
+package cdeklib
 
 import (
 	"encoding/json"
@@ -24,7 +24,7 @@ func GetAccessToken(apiURL, account, securePassword string) (string, error) {
 	if securePassword == "" {
 		return "", errors.New("securePassword is required")
 	}
-
+	//
 	endpoint := "v2/oauth/token?parameters"
 	u := apiURL + endpoint
 

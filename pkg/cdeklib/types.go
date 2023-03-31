@@ -1,4 +1,4 @@
-package types
+package cdeklib
 
 //TODO describe all the basic structures
 
