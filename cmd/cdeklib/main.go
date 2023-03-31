@@ -1,8 +1,6 @@
 package main
 
 import (
-	"ParcelCalculator/pkg/cdeklib"
-	"ParcelCalculator/pkg/cdeklib/types"
 	"fmt"
 )
 
@@ -36,7 +34,7 @@ func main() {
 		Height: 20,
 	}
 
-	var client = cdeklib.NewClient(true, apiURL, apiUrlTariffList, account, securePassword)
+	var client = NewClient(true, apiURL, apiUrlTariffList, account, securePassword)
 
 	tariffs, err := client.Calculate(fromLocation, toLocation, size)
 	if err != nil {
